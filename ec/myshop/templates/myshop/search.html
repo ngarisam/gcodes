@@ -1,0 +1,39 @@
+{% extends 'myshop/base.html' %}
+{% load static %}
+{% block title %} Search {% endblock title %}
+{% block main-content %}
+
+<div class="container productitem">
+    <div class="row">
+        {% if product %}
+                {% for prod in product %}
+                <div class="col-sm-6 text-white mb-4">
+                    <a href="{% url 'product-detail' prod.id %}" class="btn">
+                        <div>
+                            <img src="{{prod.product_image.url}}" width="300px" height="200px" />
+                            <div class="fw-bold">{{prod.title}}
+
+                            </div>
+                            <div class="fw-bold text-danger">
+                                Ksh. {{prod.discounted_price}}/-
+                                <small class="fw-light text-decoration-line-through">
+                                    {{prod.selling_price}}
+                                </small>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+                {% else %}
+                <h1 class="text-center mb-5"> Sorry, we didn't find products matching your query. You can try keywords of dairy products such as cream, milk, lassi...</h1>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock main-content %}
